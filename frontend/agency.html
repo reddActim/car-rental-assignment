@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Agency Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Agency Dashboard</h1>
+        <nav id="navButtons"></nav>
+    </header>
+
+    <main>
+        <!-- View Bookings -->
+        <section>
+            <h2>Bookings for My Cars</h2>
+            <div id="agencyBookingsContainer"></div>
+        </section>
+
+        <!-- Manage Cars -->
+        <section>
+            <h2>My Cars</h2>
+            <div id="agencyCarsContainer"></div>
+        </section>
+
+        <!-- Add New Car Section -->
+        <section>
+            <h2>Add New Car</h2>
+            <!-- Toggle button -->
+            <button id="showAddCarBtn">+ Add Car</button>
+
+            <!-- Hidden form initially -->
+            <form id="addCarForm" style="display:none;">
+                <input type="text" id="vehicle_model" placeholder="Vehicle Model" required>
+                <input type="text" id="vehicle_number" placeholder="Vehicle Number" required>
+                <input type="number" id="seating_capacity" placeholder="Seating Capacity" required>
+                <input type="number" id="rent_per_day" placeholder="Rent per Day" required>
+                <button type="submit">Save Car</button>
+                <button type="button" id="cancelAddCarBtn">Cancel</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/agency.js"></script>
+</body>
+
+</html>
