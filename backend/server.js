@@ -21,15 +21,16 @@
     res.send('Backend is running!');
   });
 
-  app.get('/api/health', (req, res) => {
-    db.query('SELECT DATABASE()', (err, results) => {
-      if (err) {
-        console.error('DB connection failed:', err);
-        return res.status(500).send('DB connection failed');
-      }
-      res.send(`DB connected: ${results[0]['DATABASE()']}`);
-    });
-  });
+app.get('/api/health', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT DATABASE()');
+    res.send(`DB connected: ${rows[0]['DATABASE()']}`);
+  } catch (err) {
+    console.error('DB connection failed:', err);
+    res.status(500).send('DB connection failed');
+  }
+});
+
   // -------------------- AUTH ROUTES --------------------
 
   // POST /api/auth/register
