@@ -5,6 +5,8 @@ function authMiddleware(req, res, next) {
   if (!header) return res.status(401).json({ error: 'No token provided' });
 
   const token = header.split(' ')[1];
+  console.log("JWT_SECRET in env:", process.env.JWT_SECRET);
+
   try {
     const decoded = jwt.verify(token, 'secretkey'); 
     req.user = decoded; // { id, role }
