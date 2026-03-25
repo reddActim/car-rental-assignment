@@ -1,7 +1,3 @@
-checkSession();
-renderNav();
-loadCars();
-
 function getUserRole() {
   const token = localStorage.getItem('token');
   if (!token) return null;
@@ -15,7 +11,7 @@ function getUserRole() {
 
 async function loadCars() {
   try {
-    const res = await fetch('https://car-rental-assignment.onrender.com/api/cars');
+    const res = await fetch('http://localhost:3000/api/cars');
     const cars = await res.json();
     const role = getUserRole();
 
@@ -87,7 +83,7 @@ async function rentCar(carId) {
   }
 
   try {
-    const res = await fetch('https://car-rental-assignment.onrender.com/api/bookings', {
+    const res = await fetch('http://localhost:3000/api/bookings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -111,6 +107,8 @@ async function rentCar(carId) {
     alert('Booking failed due to server error.');
   }
 }
+
+loadCars();
 
 function renderNav() {
   const nav = document.getElementById('navButtons');
@@ -151,21 +149,4 @@ function logout() {
   window.location.href = 'index.html';
 }
 
-function isTokenExpired(token) {
-  try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return Date.now() >= payload.exp * 1000;
-  } catch {
-    return true; // treat invalid token as expired
-  }
-}
-
-function checkSession() {
-  const token = localStorage.getItem('token');
-  if (token && isTokenExpired(token)) {
-    localStorage.removeItem('token');
-    alert('Session expired. Please login again.');
-    window.location.href = 'login.html';
-  }
-}
-
+renderNav();
