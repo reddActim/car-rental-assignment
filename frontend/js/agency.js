@@ -69,6 +69,9 @@ if (addCarForm) {
     if (res.ok) {
       alert('Car added successfully!');
       loadAgencyCars();
+      addCarForm.reset();
+      addCarForm.style.display = 'none';
+      showAddCarBtn.style.display = 'inline-block';
     } else {
       alert(data.error || 'Failed to add car');
     }
@@ -91,8 +94,69 @@ async function loadAgencyCars() {
       <p>Number: ${car.vehicle_number}</p>
       <p>Seats: ${car.seating_capacity}</p>
       <p>Rent/day: ₹${car.rent_per_day}</p>
+      <button onclick="editCar(${car.id})">Edit</button>
+      <button onclick="deleteCar(${car.id})">Delete</button>
     </div>
   `).join('');
+}
+
+async function editCar(carId) {
+  const token = getToken();
+  if (!token) return;
+
+  const vehicle_model = prompt("Enter new vehicle model:");
+  const vehicle_number = prompt("Enter new vehicle number:");
+  const seating_capacity = prompt("Enter new seating capacity:");
+  const rent_per_day = prompt("Enter new rent per day:");
+
+  if (!vehicle_model || !vehicle_number || !seating_capacity || !rent_per_day) {
+    alert("All fields are required!");
+    return;
+  }
+
+  const updatedCar = {
+    vehicle_model,
+    vehicle_number,
+    seating_capacity: parseInt(seating_capacity),
+    rent_per_day: parseFloat(rent_per_day)
+  };
+
+  const res = await fetch(`https://car-rental-assignment.onrender.com/api/cars/${carId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(updatedCar)
+  });
+
+  const data = await res.json();
+  if (res.ok) {
+    alert('Car updated successfully!');
+    loadAgencyCars();
+  } else {
+    alert(data.error || 'Failed to update car');
+  }
+}
+
+async function deleteCar(carId) {
+  const token = getToken();
+  if (!token) return;
+
+  if (!confirm("Are you sure you want to delete this car?")) return;
+
+  const res = await fetch(`https://car-rental-assignment.onrender.com/api/cars/${carId}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': `Bearer ${token}` }
+  });
+
+  const data = await res.json();
+  if (res.ok) {
+    alert('Car deleted successfully!');
+    loadAgencyCars();
+  } else {
+    alert(data.error || 'Failed to delete car');
+  }
 }
 
 // ===== Bookings =====
