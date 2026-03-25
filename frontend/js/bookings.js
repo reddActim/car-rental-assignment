@@ -26,7 +26,7 @@ async function loadCustomerBookings() {
     }
 
     try {
-        const res = await fetch('http://localhost:3000/api/bookings/my', {
+        const res = await fetch('https://car-rental-assignment.onrender.com/api/bookings/my', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const bookings = await res.json();
@@ -59,7 +59,7 @@ async function loadCustomerBookings() {
 async function cancelBooking(bookingId) {
     const token = getToken();
     try {
-        const res = await fetch(`http://localhost:3000/api/bookings/${bookingId}`, {
+        const res = await fetch(`https://car-rental-assignment.onrender.com/api/bookings/${bookingId}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -81,7 +81,7 @@ async function updateBooking(bookingId) {
     if (!newDays) return;
 
     try {
-        const res = await fetch(`http://localhost:3000/api/bookings/${bookingId}`, {
+        const res = await fetch(`https://car-rental-assignment.onrender.com/api/bookings/${bookingId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,

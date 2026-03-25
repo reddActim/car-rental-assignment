@@ -29,7 +29,7 @@ if (addCarForm) {
       rent_per_day: parseFloat(document.getElementById('rent_per_day').value)
     };
 
-    const res = await fetch('http://localhost:3000/api/cars', {
+    const res = await fetch('https://car-rental-assignment.onrender.com/api/cars', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ if (addCarForm) {
 // Load Agency Cars
 async function loadAgencyCars() {
   const token = getToken();
-  const res = await fetch('http://localhost:3000/api/cars/agency', {
+  const res = await fetch('https://car-rental-assignment.onrender.com/api/cars/agency', {
     headers: { 'Authorization': `Bearer ${token}` }
   });
   const cars = await res.json();
@@ -101,7 +101,7 @@ async function updateCar(e, id) {
   const newRent = parseFloat(document.getElementById(`edit-rent-${id}`).value);
 
   try {
-    const res = await fetch(`http://localhost:3000/api/cars/${id}`, {
+    const res = await fetch(`https://car-rental-assignment.onrender.com/api/cars/${id}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -131,7 +131,7 @@ async function updateCar(e, id) {
 // Delete Car
 async function deleteCar(carId) {
   const token = getToken();
-  const res = await fetch(`http://localhost:3000/api/cars/${carId}`, {
+  const res = await fetch(`https://car-rental-assignment.onrender.com/api/cars/${carId}`, {
     method: 'DELETE',
     headers: { 'Authorization': `Bearer ${token}` }
   });
@@ -146,7 +146,7 @@ async function deleteCar(carId) {
 // Load Bookings for Agency
 async function loadAgencyBookings() {
   const token = getToken();
-  const res = await fetch('http://localhost:3000/api/bookings/agency', {
+  const res = await fetch('https://car-rental-assignment.onrender.com/api/bookings/agency', {
     headers: { 'Authorization': `Bearer ${token}` }
   });
   const bookings = await res.json();

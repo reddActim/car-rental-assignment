@@ -16,7 +16,7 @@ if (customerForm) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const res = await fetch('http://localhost:3000/api/auth/register', {
+    const res = await fetch('https://car-rental-assignment.onrender.com/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password, role: 'CUSTOMER' })
@@ -41,7 +41,7 @@ if (agencyForm) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const res = await fetch('http://localhost:3000/api/auth/register', {
+    const res = await fetch('https://car-rental-assignment.onrender.com/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password, role: 'AGENCY' })
@@ -65,7 +65,7 @@ if (loginForm) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const res = await fetch('http://localhost:3000/api/auth/login', {
+    const res = await fetch('https://car-rental-assignment.onrender.com/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
