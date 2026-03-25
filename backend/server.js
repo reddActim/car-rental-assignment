@@ -9,7 +9,8 @@ const validate = require('./middleware/validationMiddleware');
 const { registerSchema, carSchema, bookingSchema } = require('./validation/schemas');
 require('dotenv').config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
+
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const app = express();
@@ -316,6 +317,7 @@ app.delete('/api/bookings/:id', authMiddleware, roleCheck('CUSTOMER'), async (re
 // -------------------- SERVER --------------------
 
 // Starts the Express server on the configured port.
+
 app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}`);
+  console.log(`Server started on port ${PORT}`);
 });
