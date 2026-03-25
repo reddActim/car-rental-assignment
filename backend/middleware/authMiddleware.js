@@ -8,7 +8,7 @@ function authMiddleware(req, res, next) {
   console.log("JWT_SECRET in env:", process.env.JWT_SECRET);
 
   try {
-    const decoded = jwt.verify(token, 'secretkey'); 
+    const decoded = jwt.verify(token, 'supersecretkey'); 
     req.user = decoded; // { id, role }
     next();
   } catch (err) {
