@@ -11,7 +11,7 @@ function getUserRole() {
 
 async function loadCars() {
   try {
-    const res = await fetch('http://localhost:3000/api/cars');
+    const res = await fetch('https://car-rental-assignment.onrender.com/api/cars');
     const cars = await res.json();
     const role = getUserRole();
 
@@ -83,7 +83,7 @@ async function rentCar(carId) {
   }
 
   try {
-    const res = await fetch('http://localhost:3000/api/bookings', {
+    const res = await fetch('https://car-rental-assignment.onrender.com/api/bookings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
